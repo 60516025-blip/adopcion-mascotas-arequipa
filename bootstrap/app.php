@@ -14,6 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // Confiar en el proxy de Codespaces
         $middleware->trustProxies(at: '*');
+        $middleware->alias([
+            'rol' => \App\Http\Middleware\RolMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
