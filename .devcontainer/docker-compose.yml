@@ -1,25 +1,19 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ..:/workspaces/adopcion-mascotas-arequipa:cached
+    build: .
+    volumes: ["../..:/workspaces:cached"]
     command: sleep infinity
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/adopcion
-    depends_on:
-      - db
+    depends_on: [db]
 
   db:
-    image: postgres:16
-    restart: unless-stopped
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: adopcion
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes: ["mysql-data:/var/lib/mysql"]
 
 volumes:
-  pgdata:
+  mysql-data:
