@@ -36,7 +36,7 @@ class AuthController extends Controller
         // Evita la fijación de sesión
         $request->session()->regenerate();
 
-        return redirect()->intended('/');
+        return redirect()->intended($this->inicioSegunRol($request->user()));
     }
 
     /** Registra un adoptante o un albergue (este último queda sin validar). */
@@ -72,7 +72,7 @@ class AuthController extends Controller
             ? 'Cuenta creada. Un administrador debe validar tu albergue antes de publicar mascotas.'
             : 'Cuenta creada. ¡Bienvenido a Huellitas Arequipa!';
 
-        return redirect('/')->with('exito', $mensaje);
+        return redirect($this->inicioSegunRol($usuario))->with('exito', $mensaje);
     }
 
     /** Cierra la sesión. */
@@ -83,5 +83,11 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    /** Página de inicio según el rol del usuario. */
+    private function inicioSegunRol(User $usuario): string
+    {
+        return $usuario->esAlbergue() ? route('albergue.panel') : '/';
     }
 }

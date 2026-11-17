@@ -33,6 +33,9 @@
             </ul>
             <div class="d-flex gap-2 align-items-center">
                 @auth
+                    @if (auth()->user()->esAlbergue())
+                        <a href="{{ route('albergue.panel') }}" class="btn btn-primary btn-sm">Mi panel</a>
+                    @endif
                     <span class="small">{{ auth()->user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

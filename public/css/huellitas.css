@@ -32,3 +32,9 @@ body { background: var(--hu-crema); }
 .foto-placeholder { background: #E6DCD2; color: #6b5f55; display: flex; align-items: center; justify-content: center; text-align: center; font-size: .9rem; }
 .card-mascota { transition: box-shadow .15s; }
 .card-mascota:hover { box-shadow: 0 4px 14px rgba(0, 0, 0, .08); }
+
+
+.sidebar-hu a { display: block; padding: .5rem .75rem; margin-bottom: .25rem; border-radius: 8px; color: #333; text-decoration: none; }
+.sidebar-hu a:hover { background: #F6E9E0; }
+.sidebar-hu a.active { background: #FBE6D9; color: #BF4513; font-weight: 600; }
+.miniatura { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; background: #E6DCD2; flex-shrink: 0; display: inline-block; }

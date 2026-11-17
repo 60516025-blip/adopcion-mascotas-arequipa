@@ -119,4 +119,16 @@ class Mascota extends Model
 
         return $ficha && $ficha->vacuna_antirrabica && $ficha->vacuna_quintuple;
     }
+
+    /** Ficha completa = las cuatro condiciones sanitarias cumplidas. */
+    public function getFichaCompletaAttribute(): bool
+    {
+        $ficha = $this->fichaMedica;
+
+        return $ficha
+            && $ficha->esterilizado
+            && $ficha->vacuna_antirrabica
+            && $ficha->vacuna_quintuple
+            && $ficha->desparasitado;
+    }
 }
