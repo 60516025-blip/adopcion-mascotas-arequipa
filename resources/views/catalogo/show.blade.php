@@ -81,15 +81,16 @@
                     <a href="{{ route('login') }}" class="btn btn-primary btn-lg w-100">Iniciar sesión para adoptar</a>
                 @else
                     @if (auth()->user()->esAdoptante())
-                        {{-- El formulario de preadopción se conecta en el siguiente paso --}}
-                        <a href="#" class="btn btn-primary btn-lg w-100">Iniciar solicitud de adopción</a>
+                        <a href="{{ route('solicitudes.create', $mascota->id) }}" class="btn btn-primary btn-lg w-100">Iniciar solicitud de adopción</a>
                     @endif
                 @endguest
                 <p class="small text-muted mt-2">
                     Para solicitar la adopción debes iniciar sesión como adoptante y completar la preevaluación.
                 </p>
-            @else
+            @elseif ($mascota->estado === 'en_proceso')
                 <div class="alert alert-warning mb-0">Esta mascota ya tiene una adopción en proceso.</div>
+            @else
+                <div class="alert alert-secondary mb-0">Esta mascota ya fue adoptada.</div>
             @endif
         </div>
     </div>

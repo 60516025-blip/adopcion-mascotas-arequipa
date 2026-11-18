@@ -33,6 +33,10 @@
             </ul>
             <div class="d-flex gap-2 align-items-center">
                 @auth
+                    @if (auth()->user()->esAdoptante())
+                        <a href="{{ route('solicitudes.index') }}" class="btn btn-outline-primary btn-sm">Mis solicitudes</a>
+                    @endif
+                    
                     @if (auth()->user()->esAlbergue())
                         <a href="{{ route('albergue.panel') }}" class="btn btn-primary btn-sm">Mi panel</a>
                     @endif
@@ -53,6 +57,12 @@
 @if (session('exito'))
     <div class="container mt-3">
         <div class="alert alert-success mb-0" role="alert">{{ session('exito') }}</div>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="container mt-3">
+        <div class="alert alert-danger mb-0" role="alert">{{ session('error') }}</div>
     </div>
 @endif
 

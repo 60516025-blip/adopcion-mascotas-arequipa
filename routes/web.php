@@ -5,6 +5,9 @@ use App\Http\Controllers\Albergue\PanelController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CatalogoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Albergue\PerfilController;
+use App\Http\Controllers\Albergue\SolicitudController as SolicitudAlbergueController;
+use App\Http\Controllers\SolicitudController;
 
 Route::view('/', 'inicio')->name('inicio');
 
@@ -32,4 +35,17 @@ Route::middleware(['auth', 'rol:albergue'])->prefix('albergue')->name('albergue.
     Route::put('/mascotas/{mascota}', [MascotaController::class, 'update'])->name('mascotas.update');
     Route::delete('/mascotas/{mascota}', [MascotaController::class, 'destroy'])->name('mascotas.destroy');
     Route::patch('/mascotas/{mascota}/estado', [MascotaController::class, 'cambiarEstado'])->name('mascotas.estado');
+    // Solicitudes recibidas (RF07) y perfil del albergue (RF02)
+    Route::get('/solicitudes', [SolicitudAlbergueController::class, 'index'])->name('solicitudes.index');
+    Route::get('/solicitudes/{solicitud}', [SolicitudAlbergueController::class, 'show'])->name('solicitudes.show');
+    Route::patch('/solicitudes/{solicitud}', [SolicitudAlbergueController::class, 'responder'])->name('solicitudes.responder');
+    Route::get('/perfil', [PerfilController::class, 'edit'])->name('perfil.edit');
+    Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
+});
+
+// Adoptante: preadopción (RF06) y seguimiento (RF08)
+Route::middleware(['auth', 'rol:adoptante'])->group(function () {
+    Route::get('/mascotas/{mascota}/adoptar', [SolicitudController::class, 'create'])->whereNumber('mascota')->name('solicitudes.create');
+    Route::post('/mascotas/{mascota}/adoptar', [SolicitudController::class, 'store'])->whereNumber('mascota')->name('solicitudes.store');
+    Route::get('/mis-solicitudes', [SolicitudController::class, 'index'])->name('solicitudes.index');
 });

@@ -31,4 +31,12 @@ class Solicitud extends Model
     {
         return $this->belongsTo(User::class, 'adoptante_id');
     }
+
+    /** Preevaluación orientativa (Fig. 9). La decisión final siempre la toma el albergue. */
+    public function getPreevaluacionAttribute(): string
+    {
+        $viviendaOk = $this->tipo_vivienda === 'propia' || $this->permiso_mascotas === true;
+
+        return ($viviendaOk && $this->acepta_compromiso) ? 'Apto' : 'Revisar';
+    }
 }

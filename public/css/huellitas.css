@@ -38,3 +38,12 @@ body { background: var(--hu-crema); }
 .sidebar-hu a:hover { background: #F6E9E0; }
 .sidebar-hu a.active { background: #FBE6D9; color: #BF4513; font-weight: 600; }
 .miniatura { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; background: #E6DCD2; flex-shrink: 0; display: inline-block; }
+
+.pasos-hu { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.pasos-hu .paso { display: flex; align-items: center; gap: .4rem; color: #777; font-size: .9rem; }
+.pasos-hu .paso span { width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: #E6DCD2; font-weight: 600; }
+.pasos-hu .paso.activo { color: #BF4513; font-weight: 600; }
+.pasos-hu .paso.activo span { background: #BF4513; color: #fff; }
+.pasos-hu .paso.hecho span { background: #D9F0E3; color: #1E7B4A; }
+.nav-pills .nav-link { color: #BF4513; }
+.nav-pills .nav-link.active { background: #BF4513; color: #fff; }
