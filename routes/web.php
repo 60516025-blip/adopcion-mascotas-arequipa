@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\PublicacionController as AdminPublicacionController;
 use App\Http\Controllers\Admin\UsuarioController as AdminUsuarioController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\PasswordResetController;
 
 Route::get('/', [InicioController::class, 'index'])->name('inicio');
 
@@ -27,6 +28,11 @@ Route::middleware('guest')->group(function () {
     // Máximo 5 intentos por minuto (protege contra fuerza bruta)
     Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.enviar');
     Route::post('/registro', [AuthController::class, 'registrar'])->name('registro.enviar');
+    // Recuperación de contraseña (los nombres password.* los usa Laravel al armar el enlace del correo)
+    Route::get('/olvide-mi-contrasena', [PasswordResetController::class, 'mostrarSolicitud'])->name('password.request');
+    Route::post('/olvide-mi-contrasena', [PasswordResetController::class, 'enviarEnlace'])->middleware('throttle:5,1')->name('password.email');
+    Route::get('/restablecer-contrasena/{token}', [PasswordResetController::class, 'mostrarRestablecer'])->name('password.reset');
+    Route::post('/restablecer-contrasena', [PasswordResetController::class, 'restablecer'])->middleware('throttle:5,1')->name('password.update');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
