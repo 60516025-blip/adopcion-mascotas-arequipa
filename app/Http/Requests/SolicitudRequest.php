@@ -23,6 +23,7 @@ class SolicitudRequest extends FormRequest
             'permiso_mascotas' => ['required_if:tipo_vivienda,alquilada', 'nullable', 'boolean'],
             'experiencia_previa' => ['nullable', 'string', 'max:1000'],
             'acepta_compromiso' => ['accepted'],
+            'telefono' => ['required', 'regex:/^[0-9+\s\-]{7,20}$/'],
         ];
     }
 
@@ -53,6 +54,8 @@ class SolicitudRequest extends FormRequest
             'max.numeric' => 'El campo :attribute no puede ser mayor que :max.',
             'max.string' => 'El campo :attribute no debe superar :max caracteres.',
             'accepted' => 'Debes aceptar el compromiso de tenencia responsable.',
+            'telefono.required' => 'Escribe un teléfono de contacto.',
+            'telefono.regex' => 'Ingresa un teléfono válido (solo números, entre 7 y 20 caracteres).',
         ];
     }
 

@@ -37,14 +37,25 @@
                         <dl class="row">
                             <dt class="col-sm-4">Nombre</dt><dd class="col-sm-8">{{ $usuario->name }}</dd>
                             <dt class="col-sm-4">Correo</dt><dd class="col-sm-8">{{ $usuario->email }}</dd>
-                            <dt class="col-sm-4">Teléfono</dt><dd class="col-sm-8">{{ $usuario->telefono ?: 'No registrado' }}</dd>
                             <dt class="col-sm-4">Distrito</dt><dd class="col-sm-8">{{ $usuario->distrito ?: 'No registrado' }}</dd>
                         </dl>
-                        <label for="numero_personas" class="form-label">Número de personas en el hogar</label>
-                        <input type="number" id="numero_personas" name="numero_personas" min="1" max="30" required
-                               value="{{ old('numero_personas') }}" placeholder="Ejemplo: 4"
-                               class="form-control @error('numero_personas') is-invalid @enderror" style="max-width:200px">
-                        @error('numero_personas')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="telefono" class="form-label">Teléfono de contacto</label>
+                                <input type="tel" id="telefono" name="telefono" required maxlength="20"
+                                       value="{{ old('telefono', $usuario->telefono) }}" placeholder="Ejemplo: 987654321"
+                                       class="form-control @error('telefono') is-invalid @enderror">
+                                <div class="form-text">Solo se mostrará al albergue si aprueba tu solicitud.</div>
+                                @error('telefono')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="numero_personas" class="form-label">Personas en el hogar</label>
+                                <input type="number" id="numero_personas" name="numero_personas" min="1" max="30" required
+                                       value="{{ old('numero_personas') }}" placeholder="Ejemplo: 4"
+                                       class="form-control @error('numero_personas') is-invalid @enderror">
+                                @error('numero_personas')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            </div>
+                        </div>
                     </div>
 
                     {{-- Paso 2: Vivienda --}}

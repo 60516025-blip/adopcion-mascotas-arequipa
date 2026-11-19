@@ -49,6 +49,9 @@ class SolicitudController extends Controller
             return redirect()->route('mascotas.show', $mascota->id)->with('error', $motivo);
         }
 
+        // El teléfono queda en la cuenta: el albergue solo lo ve si aprueba la solicitud
+        $request->user()->forceFill(['telefono' => $request->validated('telefono')])->save();
+
         $this->servicio->crear($mascota, $request->user(), $request->datosSolicitud());
 
         return redirect()->route('solicitudes.index')
