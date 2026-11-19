@@ -48,3 +48,26 @@ body { background: var(--hu-crema); }
 .nav.nav-pills .nav-link { color: #BF4513; border-radius: 8px; transition: background .2s, color .2s; }
 .nav.nav-pills .nav-link:hover { background: #F6E9E0; }
 .nav.nav-pills .nav-link.active { background: #FBE6D9 !important; color: #BF4513 !important; font-weight: 600; }
+
+
+/* ---------- Inicio ---------- */
+.hero-hu { position: relative; overflow: hidden; color: #fff; background: linear-gradient(135deg, #BF4513 0%, #8A320E 100%); }
+.hero-hu.hero-foto { background-image: linear-gradient(135deg, rgba(138, 50, 14, .88), rgba(191, 69, 19, .55)), url('/img/portada.jpg'); background-size: cover; background-position: center; }
+.hero-pata { position: absolute; right: -50px; bottom: -70px; width: 380px; height: 380px; fill: rgba(255, 255, 255, .08); pointer-events: none; }
+.etiqueta-hero { text-transform: uppercase; letter-spacing: .08em; font-weight: 600; font-size: .8rem; color: #FBE6D9; }
+.hero-hu .lead { color: #FDF3EE; }
+.btn-claro { background: #fff; border-color: #fff; color: #BF4513; font-weight: 600; }
+.btn-claro:hover { background: #FBE6D9; border-color: #FBE6D9; color: #8A320E; }
+.btn-borde-claro { border: 2px solid rgba(255, 255, 255, .9); color: #fff; font-weight: 600; }
+.btn-borde-claro:hover { background: rgba(255, 255, 255, .14); border-color: #fff; color: #fff; }
+.stat-hu .num { font-size: 2.2rem; font-weight: 800; color: #BF4513; line-height: 1.1; }
+.paso-num { width: 48px; height: 48px; border-radius: 50%; background: #FBE6D9; color: #BF4513; font-weight: 800; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+.banda-albergue { background: #3B1D12; color: #fff; }
+.lista-check { list-style: none; padding: 0; margin: 0; }
+.lista-check li { padding-left: 1.6rem; position: relative; margin-bottom: .35rem; }
+.lista-check li::before { content: "\2713"; position: absolute; left: 0; color: #F2A47B; font-weight: 700; }
+
+/* ---------- Login y registro ---------- */
+.acceso-card { max-width: 920px; }
+.panel-acceso { background: linear-gradient(160deg, #BF4513, #8A320E); color: #fff; }
+.panel-pata { width: 56px; height: 56px; fill: #fff; margin-bottom: 1rem; }

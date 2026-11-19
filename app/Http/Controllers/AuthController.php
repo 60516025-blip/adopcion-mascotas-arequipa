@@ -17,10 +17,16 @@ use Illuminate\Support\Facades\DB;
  */
 class AuthController extends Controller
 {
-    /** Muestra login y registro en una sola página (Fig. 11). */
-    public function mostrarAcceso()
+    /** Pantalla de inicio de sesión (Fig. 11). */
+    public function mostrarLogin()
     {
-        return view('auth.acceso');
+        return view('auth.login');
+    }
+
+    /** Pantalla de registro (Fig. 11). */
+    public function mostrarRegistro()
+    {
+        return view('auth.registro');
     }
 
     /** Inicia sesión con correo y contraseña. */

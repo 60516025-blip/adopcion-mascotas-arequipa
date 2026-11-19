@@ -12,8 +12,9 @@ use App\Http\Controllers\Admin\AlbergueController as AdminAlbergueController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\PublicacionController as AdminPublicacionController;
 use App\Http\Controllers\Admin\UsuarioController as AdminUsuarioController;
+use App\Http\Controllers\InicioController;
 
-Route::view('/', 'inicio')->name('inicio');
+Route::get('/', [InicioController::class, 'index'])->name('inicio');
 
 // Catálogo público
 Route::get('/catalogo', [CatalogoController::class, 'index'])->name('catalogo');
@@ -21,8 +22,8 @@ Route::get('/mascotas/{id}', [CatalogoController::class, 'show'])->whereNumber('
 
 // Solo para usuarios sin sesión
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'mostrarAcceso'])->name('login');
-    Route::get('/registro', [AuthController::class, 'mostrarAcceso'])->name('registro');
+    Route::get('/login', [AuthController::class, 'mostrarLogin'])->name('login');
+    Route::get('/registro', [AuthController::class, 'mostrarRegistro'])->name('registro');
     // Máximo 5 intentos por minuto (protege contra fuerza bruta)
     Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.enviar');
     Route::post('/registro', [AuthController::class, 'registrar'])->name('registro.enviar');
