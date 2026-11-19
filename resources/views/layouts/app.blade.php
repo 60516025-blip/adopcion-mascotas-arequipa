@@ -36,9 +36,13 @@
                     @if (auth()->user()->esAdoptante())
                         <a href="{{ route('solicitudes.index') }}" class="btn btn-outline-primary btn-sm">Mis solicitudes</a>
                     @endif
-                    
+
                     @if (auth()->user()->esAlbergue())
                         <a href="{{ route('albergue.panel') }}" class="btn btn-primary btn-sm">Mi panel</a>
+                    @endif
+                    
+                    @if (auth()->user()->esAdmin())
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary btn-sm">Panel admin</a>
                     @endif
                     <span class="small">{{ auth()->user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}">

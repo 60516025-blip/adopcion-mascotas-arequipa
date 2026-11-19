@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Albergue\PerfilController;
 use App\Http\Controllers\Albergue\SolicitudController as SolicitudAlbergueController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\Admin\AlbergueController as AdminAlbergueController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\PublicacionController as AdminPublicacionController;
+use App\Http\Controllers\Admin\UsuarioController as AdminUsuarioController;
 
 Route::view('/', 'inicio')->name('inicio');
 
@@ -48,4 +52,14 @@ Route::middleware(['auth', 'rol:adoptante'])->group(function () {
     Route::get('/mascotas/{mascota}/adoptar', [SolicitudController::class, 'create'])->whereNumber('mascota')->name('solicitudes.create');
     Route::post('/mascotas/{mascota}/adoptar', [SolicitudController::class, 'store'])->whereNumber('mascota')->name('solicitudes.store');
     Route::get('/mis-solicitudes', [SolicitudController::class, 'index'])->name('solicitudes.index');
+});
+
+// Administrador (RF09 y RF10)
+Route::middleware(['auth', 'rol:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/albergues', [AdminAlbergueController::class, 'index'])->name('albergues.index');
+    Route::patch('/albergues/{albergue}', [AdminAlbergueController::class, 'actualizar'])->name('albergues.actualizar');
+    Route::get('/usuarios', [AdminUsuarioController::class, 'index'])->name('usuarios.index');
+    Route::get('/publicaciones', [AdminPublicacionController::class, 'index'])->name('publicaciones.index');
+    Route::delete('/publicaciones/{mascota}', [AdminPublicacionController::class, 'destroy'])->name('publicaciones.destroy');
 });

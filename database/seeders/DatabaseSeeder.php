@@ -179,5 +179,7 @@ class DatabaseSeeder extends Seeder
             'estado' => 'aprobada',
             'respuesta' => 'Aprobada. Coordinemos la entrega esta semana.',
         ]);
+
+        $this->call(AdminSeeder::class);
     }
 }

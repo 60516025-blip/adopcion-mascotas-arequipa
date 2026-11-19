@@ -66,7 +66,11 @@ class MascotaService
             return false;
         }
 
-        $mascota->update(['estado' => $nuevo]);
+        // adoptada_en alimenta la métrica "tiempo promedio de adopción"
+        $mascota->forceFill([
+            'estado' => $nuevo,
+            'adoptada_en' => $nuevo === 'adoptada' ? now() : null,
+        ])->save();
 
         return true;
     }

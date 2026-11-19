@@ -88,6 +88,10 @@ class AuthController extends Controller
     /** Página de inicio según el rol del usuario. */
     private function inicioSegunRol(User $usuario): string
     {
-        return $usuario->esAlbergue() ? route('albergue.panel') : '/';
+        return match (true) {
+            $usuario->esAdmin() => route('admin.dashboard'),
+            $usuario->esAlbergue() => route('albergue.panel'),
+            default => '/',
+        };
     }
 }

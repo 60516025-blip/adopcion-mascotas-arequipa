@@ -45,5 +45,6 @@ body { background: var(--hu-crema); }
 .pasos-hu .paso.activo { color: #BF4513; font-weight: 600; }
 .pasos-hu .paso.activo span { background: #BF4513; color: #fff; }
 .pasos-hu .paso.hecho span { background: #D9F0E3; color: #1E7B4A; }
-.nav-pills .nav-link { color: #BF4513; }
-.nav-pills .nav-link.active { background: #BF4513; color: #fff; }
+.nav.nav-pills .nav-link { color: #BF4513; border-radius: 8px; transition: background .2s, color .2s; }
+.nav.nav-pills .nav-link:hover { background: #F6E9E0; }
+.nav.nav-pills .nav-link.active { background: #FBE6D9 !important; color: #BF4513 !important; font-weight: 600; }
