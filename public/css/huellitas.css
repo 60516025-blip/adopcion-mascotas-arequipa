@@ -71,3 +71,33 @@ body { background: var(--hu-crema); }
 .acceso-card { max-width: 920px; }
 .panel-acceso { background: linear-gradient(160deg, #BF4513, #8A320E); color: #fff; }
 .panel-pata { width: 56px; height: 56px; fill: #fff; margin-bottom: 1rem; }
+
+/* ===== Movimiento suave ===== */
+.card-mascota { overflow: hidden; }
+.card-mascota, .btn, .nav-link {
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease,
+                color .2s ease, border-color .2s ease;
+}
+.card-mascota:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(191, 69, 19, .15); }
+.card-mascota img { transition: transform .4s ease; }
+.card-mascota:hover img { transform: scale(1.04); }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+/* Aparición suave (backwards: no pisa el efecto hover al terminar) */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+.tarjeta-hu, .alert, .hero-hu .container { animation: aparecer .45s ease backwards; }
+.row > div:nth-child(2) .card-mascota { animation-delay: .06s; }
+.row > div:nth-child(3) .card-mascota { animation-delay: .12s; }
+.row > div:nth-child(4) .card-mascota { animation-delay: .18s; }
+
+/* Accesibilidad: respeta "reducir movimiento" del sistema */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
