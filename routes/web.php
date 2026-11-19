@@ -14,12 +14,17 @@ use App\Http\Controllers\Admin\PublicacionController as AdminPublicacionControll
 use App\Http\Controllers\Admin\UsuarioController as AdminUsuarioController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\AlberguePublicoController;
 
 Route::get('/', [InicioController::class, 'index'])->name('inicio');
 
 // Catálogo público
 Route::get('/catalogo', [CatalogoController::class, 'index'])->name('catalogo');
 Route::get('/mascotas/{id}', [CatalogoController::class, 'show'])->whereNumber('id')->name('mascotas.show');
+// Páginas públicas de albergues y guía de adopción
+Route::get('/albergues', [AlberguePublicoController::class, 'index'])->name('albergues.index');
+Route::get('/albergues/{albergue}', [AlberguePublicoController::class, 'show'])->whereNumber('albergue')->name('albergues.show');
+Route::view('/como-adoptar', 'como-adoptar')->name('como-adoptar');
 
 // Solo para usuarios sin sesión
 Route::middleware('guest')->group(function () {

@@ -28,8 +28,8 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('inicio') ? 'active' : '' }}" href="{{ route('inicio') }}">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link {{ request()->routeIs('catalogo', 'mascotas.*') ? 'active' : '' }}" href="{{ route('catalogo') }}">Catálogo</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Albergues</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Cómo adoptar</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('albergues.*') ? 'active' : '' }}" href="{{ route('albergues.index') }}">Albergues</a></li>
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('como-adoptar') ? 'active' : '' }}" href="{{ route('como-adoptar') }}">Cómo adoptar</a></li>
             </ul>
             <div class="d-flex gap-2 align-items-center">
                 @auth
