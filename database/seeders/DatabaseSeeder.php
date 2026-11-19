@@ -181,5 +181,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(AdminSeeder::class);
+
+        // Asigna foto a cada mascota si existe public/img/mascotas/{nombre}.jpg|jpeg|png|webp
+        foreach (\App\Models\Mascota::all() as $mascota) {
+            foreach (['jpg', 'jpeg', 'png', 'webp'] as $ext) {
+                $ruta = 'img/mascotas/' . \Illuminate\Support\Str::slug($mascota->nombre) . '.' . $ext;
+                if (file_exists(public_path($ruta))) {
+                    $mascota->forceFill(['foto_url' => $ruta])->save();
+                    break;
+                }
+            }
+        }
     }
 }
